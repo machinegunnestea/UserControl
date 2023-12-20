@@ -41,6 +41,8 @@ namespace UserControlling.Controllers
                 var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
                 if(result.Succeeded)
                 {
+                    user.LastLoginDate= DateTime.Now;
+                    await userManager.UpdateAsync(user);
                     return RedirectToAction("Index", "Home");
                 }                    
                 ModelState.AddModelError("", "Invalid login attempt");          
@@ -59,9 +61,11 @@ namespace UserControlling.Controllers
             {
                 User user = new()
                 {
+                    Name = model.Name,
                     Email = model.Email,
                     UserName = model.Email,
                     RegistrationDate = DateTime.Now,
+                    LastLoginDate = DateTime.Now,
                     IsActive = true,
                 };
                 var result = await userManager.CreateAsync(user, model.Password);

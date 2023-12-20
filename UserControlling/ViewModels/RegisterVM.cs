@@ -8,6 +8,9 @@ namespace UserControlling.ViewModels
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        
+        [Required]
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -15,6 +18,7 @@ namespace UserControlling.ViewModels
 
         [Compare("Password", ErrorMessage ="Passwords don't match")]
         [Display(Name ="Confirm password")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
 

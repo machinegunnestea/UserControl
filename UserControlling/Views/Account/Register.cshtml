@@ -11,6 +11,11 @@
         <form asp-action="Register" method="post">
             <div asp-asp-validation-summary="ModelOnly"></div>
             <div class="mb-1">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="mb-1">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-asp-validation-for="Email" class="text-danger"></span>
